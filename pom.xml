@@ -80,6 +80,23 @@
 			<!--<scope>test</scope>-->
 		<!--</dependency>-->
 
+		<!--webjars AND bootstrap-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>0.31</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7-1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
 		<!--JSoup 1.10.2-->
 		<dependency>
 			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
