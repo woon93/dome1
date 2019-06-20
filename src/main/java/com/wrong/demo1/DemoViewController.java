@@ -14,4 +14,9 @@ public class DemoViewController {
     public String index() {
         return "test_pic";
     }
+
+    @RequestMapping("/prototype")
+    public String one() {
+        return "prototype";
+    }
 }

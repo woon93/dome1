@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8" />
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <title>WebJars Demo</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <style type="text/css">
+        .fakeimg {
+        height: 200px;
+         background: #aaa;
+        }
+
+        html, body {width:100%;height:85%;} /*非常重要的样式让背景图片100%适应整个屏幕*/
+        .bg {display: table;width: 100%;height: 100%;padding: 100px 0;text-align: center;color: #fff;background: url(pictures/photo.jpg) no-repeat bottom center;background-color: #000;background-size: cover;}
+        .my-navbar {padding:20px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;}
+        .my-navbar a{background:transparent !important;color:#fff !important}
+        .my-navbar a:hover {color:#45bcf9 !important;background:transparent;outline:0}
+        .my-navbar a {transition: color 0.5s ease-in-out;}/*-webkit-transition ;-moz-transition*/
+        .top-nav {padding:0;background:#000;}
+        button.navbar-toggle {background-color:#fbfbfb;}/*整个背景都是transparent透明的，会看不到，所以再次覆盖一下*/
+        button.navbar-toggle > span.icon-bar {background-color:#dedede}
+    </style>
+    <script>
+        $(window).scroll(function () {
+            if ($(".navbar").offset().top > 50) {
+                $(".navbar-fixed-top").addClass("top-nav");
+            } else {
+                $(".navbar-fixed-top").removeClass("top-nav");
+                }
+        })
+    </script>
+</head>
+<body>
+<!--<div class="jumbotron text-center" style="margin-bottom:0">-->
+    <!--<h1>我的第一个 Bootstrap 页面</h1>-->
+    <!--<p>重置浏览器窗口大小查看效果！</p>-->
+<!--</div>-->
+
+<nav class="navbar navbar-fixed-top my-navbar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">菜鸟教程</a>
+        </div>
+        <div class="collapse navbar-collapse pull-left" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">iOS</a></li>
+                <li><a href="#">SVN</a></li>
+                <li>
+                    <a href="#">Asp.Net</a>
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse pull-right">
+            <img src="pictures/photo.jpg" class="img-circle"
+                 height="50px"/>
+        </div>
+    </div>
+</nav>
+<div class="bg">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--<nav class="navbar navbar-inverse">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header pull-left">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="#">网站名</a>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-collapse pull-left"  id="myNavbar">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="#">主页</a></li>-->
+                <!--<li><a href="#">页面 2</a></li>-->
+                <!--<li><a href="#">页面 3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-collapse pull-right">-->
+                <!--<img src="pictures/photo.jpg" class="img-circle"-->
+                     <!--height="50px"/>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="fakeimg"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="fakeimg"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p>底部内容</p>
+</div>
+</body>
+</html>
