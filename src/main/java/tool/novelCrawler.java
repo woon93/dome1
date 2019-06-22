@@ -39,8 +39,9 @@ public class novelCrawler {
         StringBuffer content = new StringBuffer();
         // 小说标题
         content.append(noverlName + "\n");
-        // 节选章节（左开右闭）
-        List<Element> subChapters= chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),chapterEnd);
+        // 节选章节（subList方法左开右闭）
+        List<Element> subChapters= chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),
+                (chapterEnd < chapterStart ? chapterStart : chapterEnd));
 
         for (Element chapter : subChapters) {
             // 章目标题
