@@ -40,9 +40,9 @@ public class novelCrawler {
         // 小说标题
         content.append(noverlName + "\n");
         // 节选章节（左开右闭）
-        List<Element> subElements= chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),chapterEnd);
+        List<Element> subChapters= chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),chapterEnd);
 
-        for (Element chapter : subElements) {
+        for (Element chapter : subChapters) {
             // 章目标题
             content.append( "\n\n\n" + chapter.text() + "\n");
             // 暂停进程（毫秒）,防止读取太快
