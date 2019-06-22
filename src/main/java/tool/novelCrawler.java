@@ -13,6 +13,7 @@ import java.util.List;
 
 public class novelCrawler {
     public static void main( String[] args ) throws IOException, InterruptedException {
+        /** 针对不同的小说修改属性配置 **********************/
         // 本地存放路径
         String localUrl = "E:\\小说\\";
 
@@ -26,13 +27,14 @@ public class novelCrawler {
         int chapterStart = 1;
         int chapterEnd = 10;
 
-        // 章节列表所在元素ID
+        // 章节列表所在HTML元素ID
         String chaptersId = "list-chapterAll";
 
-        // 文本所在元素ID
+        // 文本所在HTML元素ID
         String contextId = "htmlContent";
+        /***********************************************/
 
-        // 爬去开始
+        // 开始爬取
         Document doc = Jsoup.connect(chapterUrlList).get();
         // 读取章节列表所在元素内所有链接
         Elements chapters = doc.select("div#" + chaptersId).select("a[href]");
@@ -71,6 +73,7 @@ public class novelCrawler {
             content.append(txt);
         }
 
+        // 输出文本文件
         // 1：利用File类找到要操作的对象
         File file = new File(localUrl +noverlName +".txt");
         if(!file.getParentFile().exists()){
