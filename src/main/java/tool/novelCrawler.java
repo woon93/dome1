@@ -22,12 +22,17 @@ public class novelCrawler {
         // 章节目录URL
         String chapterUrlList = "https://www.biqugeso.com/book/13622/";
 
+        // 要下载的章节目录
+        int chapterStart = 1;
+        int chapterEnd = 10;
+
         // 章节列表所在元素ID
         String chaptersId = "list-chapterAll";
 
         // 文本所在元素ID
         String contextId = "htmlContent";
 
+        // 爬去开始
         Document doc = Jsoup.connect(chapterUrlList).get();
         // 读取章节列表所在元素内所有链接
         Elements chapters = doc.select("div#" + chaptersId).select("a[href]");
@@ -35,12 +40,12 @@ public class novelCrawler {
         // 小说标题
         content.append(noverlName + "\n");
         // 节选章节（左开右闭）
-        List<Element> subElements= chapters.subList(3,6);
+        List<Element> subElements= chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),chapterEnd);
 
         for (Element chapter : subElements) {
             // 章目标题
             content.append( "\n\n\n" + chapter.text() + "\n");
-            // 暂停进程（毫秒）
+            // 暂停进程（毫秒）,防止读取太快
             Thread.sleep(30);
             String txt = "";
             // String txtTrimNbsp = "";
