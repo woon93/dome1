@@ -5,27 +5,68 @@
     <meta charset="utf-8" />
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <title>WebJars Demo</title>
+	<script src="/js/layOutIt.js"></script>
+    <title>Prototype Demo</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <style type="text/css">
-        .fakeimg {
-        height: 200px;
+        .fakeimg1 {
+        height: 700px;
+         background: #aaa;
+        }
+        .fakeimg2 {
+        height: 860px;
+         background: #aaa;
+        }
+        .fakeimg3 {
+        height: 415px;
          background: #aaa;
         }
 
-        html, body {width:100%;height:85%;} /*非常重要的样式让背景图片100%适应整个屏幕*/
+        .my-container-fluid {
+        	background: rgba(0, 0, 0, 0.5);width:98.5%
+        }
+		.my-row {
+			margin-left: 0px;margin-right: 0px
+		}
+		.my-col-left {
+			padding-left: 0.75%;
+		}
+		.my-col-right {
+			padding-right: 0.75%;
+		}
+		.my-header-img {
+			height:50px;
+		}
+		.my-img-left {
+			/*padding-left: 0.5%;
+			padding-right: 0.5%;*/
+			/*height: 400px;*/
+			padding-top: 6px;
+			width: 98%;
+		}
+		.my-page-header {
+			margin: 20px;
+		}
+		.no-padding-column {
+			padding: 0px;
+		}
+
+        /*非常重要的样式让背景图片100%适应整个屏幕*/
+        html, body {width:100%;height:100%;padding: 0px}
         .bg {display: table;width: 100%;height: 100%;padding: 100px 0;text-align: center;color: #fff;background: url(pictures/photo.jpg) no-repeat bottom center;background-color: #000;background-size: cover;}
         .my-navbar {padding:20px 0;transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;}
-        .my-navbar a{background:transparent !important;color:#fff !important}
+        .my-navbar a{color:#03a9f4 ;/*background:transparent !important;background: rgba(0, 0, 0, 0.1) !important*/}
         .my-navbar a:hover {color:#45bcf9 !important;background:transparent;outline:0}
-        .my-navbar a {transition: color 0.5s ease-in-out;}/*-webkit-transition ;-moz-transition*/
+        /*-webkit-transition ;-moz-transition*/
+        .my-navbar a {transition: color 0.5s ease-in-out;}
         .top-nav {padding:0;background:#000;}
-        button.navbar-toggle {background-color:#fbfbfb;}/*整个背景都是transparent透明的，会看不到，所以再次覆盖一下*/
+        /*整个背景都是transparent透明的，会看不到，所以再次覆盖一下*/
+        button.navbar-toggle {background-color:#fbfbfb;}
         button.navbar-toggle > span.icon-bar {background-color:#dedede}
     </style>
     <script>
         $(window).scroll(function () {
-            if ($(".navbar").offset().top > 50) {
+            if ($(".navbar").offset().top > 80) {
                 $(".navbar-fixed-top").addClass("top-nav");
             } else {
                 $(".navbar-fixed-top").removeClass("top-nav");
@@ -33,134 +74,403 @@
         })
     </script>
 </head>
-<body>
-<!--<div class="jumbotron text-center" style="margin-bottom:0">-->
-    <!--<h1>我的第一个 Bootstrap 页面</h1>-->
-    <!--<p>重置浏览器窗口大小查看效果！</p>-->
-<!--</div>-->
 
+<body>
+
+<!-- 导航栏 -->
 <nav class="navbar navbar-fixed-top my-navbar" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid my-container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#example-navbar-collapse">
-                <span class="sr-only">切换导航</span>
+                <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">菜鸟教程</a>
+            <a class="navbar-brand" href="#">工会首页</a>
         </div>
         <div class="collapse navbar-collapse pull-left" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">iOS</a></li>
-                <li><a href="#">SVN</a></li>
+                <li class="active"><a href="#">新闻公告</a></li>
                 <li>
-                    <a href="#">Asp.Net</a>
+                	<a href="#">学习强国</a>
+                </li>
+                <li>
+                    <a href="#">业务工作</a>
+                </li>
+                <li>
+                    <a href="#">资料中心</a>
+                </li>
+                <li>
+                    <a href="#">职工风采</a>
+                </li>
+                <li>
+                    <a href="#">维权互助</a>
+                </li>
+                <li>
+                    <a href="#">职工天地</a>
                 </li>
             </ul>
         </div>
         <div class="collapse navbar-collapse pull-right">
-            <img src="pictures/photo.jpg" class="img-circle"
-                 height="50px"/>
+            <img src="pictures/photo.jpg" class="img-circle my-header-img"/>
         </div>
     </div>
 </nav>
+
+<!-- 首页大窗展示 -->
 <div class="bg">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
+    <div class="row my-row">
+    	<!-- 左侧幻灯片 -->
+        <div class="col-sm-8 my-col-left">
+            <div class="fakeimg1">
+            	<div class="row clearfix my-row">
+					<div class="carousel slide" id="myCarousel">
+						<ol class="carousel-indicators">
+							<li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+							<li data-slide-to="1" data-target="#myCarousel" class=""></li>
+							<li data-slide-to="2" data-target="#myCarousel" class=""></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="item active">
+								<img alt="" src="pictures/photo.jpg">
+								<div class="carousel-caption">
+									<h4>First Thumbnail label</h4>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+							</div>
+							<div class="item">
+								<img alt="" src="pictures/photo.jpg">
+								<div class="carousel-caption">
+									<h4>Second Thumbnail label</h4>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+							</div>
+							<div class="item">
+								<img alt="" src="pictures/photo.jpg">
+								<div class="carousel-caption">
+									<h4>Third Thumbnail label</h4>
+									<p>
+										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#myCarousel" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+					</div>
+				</div>
+			</div>
         </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
+        
+        <!-- 右侧文本 -->
+        <div class="col-sm-4 my-col-right">
+            <div class="fakeimg1"></div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
+        <!-- <div class="col-sm-1"></div> -->
     </div>
 </div>
 
 
-<!--<nav class="navbar navbar-inverse">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header pull-left">-->
-            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<a class="navbar-brand" href="#">网站名</a>-->
-        <!--</div>-->
-        <!--<div class="collapse navbar-collapse pull-left"  id="myNavbar">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li class="active"><a href="#">主页</a></li>-->
-                <!--<li><a href="#">页面 2</a></li>-->
-                <!--<li><a href="#">页面 3</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-        <!--<div class="collapse navbar-collapse pull-right">-->
-                <!--<img src="pictures/photo.jpg" class="img-circle"-->
-                     <!--height="50px"/>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
-
+<!-- 首页内容 -->
 <div class="container">
+	<!-- 内容左侧 -->
     <div class="row">
         <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="fakeimg"></div>
-        </div>
-        <div class="col-sm-8">
-            <div class="fakeimg"></div>
-        </div>
-    </div>
+            <div class="fakeimg2">
+            	<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="panel-group" id="panel-000">
+							<!-- 第一个 -->
+							<div class="panel panel-default" style="margin-top: 10px">
+								<div class="panel-heading">
+									 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-000" href="#panel-element-111">			Collapsible Group Item #1</a>
+								</div>
+								<div id="panel-element-111" class="panel-collapse in">
+									<div class="panel-body">
+										<div class="thumbnail">
+											<img src="pictures/photo.jpg" />
+											<div class="caption">
+												<h3>
+													Thumbnail label
+												</h3>
+												<p>
+													Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+												</p>
+												<p>
+													 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
+							<!-- 第二个 -->
+							<div class="panel panel-default " style="margin-top: 0px">
+								<div class="panel-heading">
+									 <a class="panel-title" data-toggle="collapse" data-parent="#panel-000" href="#panel-element-222">			Collapsible Group Item #2</a>
+								</div>
+								<div id="panel-element-222" class="panel-collapse collapse">
+									<div class="panel-body">
+										<div class="thumbnail">
+											<img src="pictures/photo.jpg" />
+											<div class="caption">
+												<h3>
+													Thumbnail label
+												</h3>
+												<p>
+													Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+												</p>
+												<p>
+													 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- 第三个 -->
+							<div class="panel panel-default" style="margin-top: 0px">
+								<div class="panel-heading">
+									 <a class="panel-title" data-toggle="collapse" data-parent="#panel-000" href="#panel-element-333">			Collapsible Group Item #3</a>
+								</div>
+								<div id="panel-element-333" class="panel-collapse collapse">
+									<div class="panel-body">
+										<div class="thumbnail">
+											<img src="pictures/photo.jpg" />
+											<div class="caption">
+												<h3>
+													Thumbnail label
+												</h3>
+												<p>
+													Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+												</p>
+												<p>
+													 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- 第四个 -->
+							<div class="panel panel-default " style="margin-top: 0px">
+								<div class="panel-heading">
+									 <a class="panel-title" data-toggle="collapse" data-parent="#panel-000" href="#panel-element-444">			Collapsible Group Item #4</a>
+								</div>
+								<div id="panel-element-444" class="panel-collapse collapse">
+									<div class="panel-body">
+										<div class="thumbnail">
+											<img src="pictures/photo.jpg" />
+											<div class="caption">
+												<h3>
+													Thumbnail label
+												</h3>
+												<p>
+													Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+												</p>
+												<p>
+													 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- 第五个 -->
+							<div class="panel panel-default " style="margin-top: 0px">
+								<div class="panel-heading">
+									 <a class="panel-title" data-toggle="collapse" data-parent="#panel-000" href="#panel-element-555">			Collapsible Group Item #5</a>
+								</div>
+								<div id="panel-element-555" class="panel-collapse collapse">
+									<div class="panel-body">
+										<div class="thumbnail">
+											<img src="pictures/photo.jpg" />
+											<div class="caption">
+												<h3>
+													Thumbnail label
+												</h3>
+												<p>
+													Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+												</p>
+												<p>
+													 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- 第六个 -->
+							<div class="panel panel-default " style="margin-top: 0px">
+								<div class="panel-heading">
+									 <a class="panel-title" data-toggle="collapse" data-parent="#panel-000" href="#panel-element-666">			Collapsible Group Item #6</a>
+								</div>
+								<div id="panel-element-666" class="panel-collapse collapse">
+									<div class="panel-body">
+										<div class="thumbnail">
+											<img src="pictures/photo.jpg" />
+											<div class="caption">
+												<h3>
+													Thumbnail label
+												</h3>
+												<p>
+													Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+												</p>
+												<p>
+													 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+
+		<!-- 内容右侧 -->
+        <div class="col-sm-8">
+        	<div class="fakeimg3">
+            	<div class="tabbable" id="tabs-10" style="margin-top: 10px">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#panel-11" data-toggle="tab">新闻公告</a>
+						</li>
+						<li>
+							<a href="#panel-12" data-toggle="tab">学习强国</a>
+						</li>
+						<li>
+							<a href="#panel-13" data-toggle="tab">业务工作</a>
+						</li>
+						<li>
+							<a href="#panel-14" data-toggle="tab">资料中心</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-11">
+							<p>
+								<div class="span12">
+									<ul>
+										<li>
+											<div class="page-header my-page-header">
+												<h4>
+													页标题范例 <small>此处编写页标题</small>
+												</h4>
+											</div>
+										</li>
+										<li>
+											<div class="page-header my-page-header">
+												<h4>
+													页标题范例 <small>此处编写页标题</small>
+												</h4>
+											</div>
+										</li>
+										<li>
+											<div class="page-header my-page-header">
+												<h4>
+													页标题范例 <small>此处编写页标题</small>
+												</h4>
+											</div>
+										</li>
+										<li>
+											<div class="page-header my-page-header">
+												<h4>
+													页标题范例 <small>此处编写页标题</small>
+												</h4>
+											</div>
+										</li>
+										<li>
+											<div class="page-header my-page-header">
+												<h4>
+													页标题范例 <small>此处编写页标题</small>
+												</h4>
+											</div>
+										</li>
+									</ul>
+								</div>
+							
+							<!-- 分页 -->
+							
+							</p>
+						</div>
+						<div class="tab-pane" id="panel-12">
+							<p>
+								第二部分内容.
+							</p>
+						</div>
+						<div class="tab-pane" id="panel-13">
+							<p>
+								第三部分内容.
+							</p>
+						</div>
+						<div class="tab-pane" id="panel-14">
+							<p>
+								第四部分内容.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="fakeimg3">
+				<div class="tabbable" id="tabs-20">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#panel-21" data-toggle="tab">职工风采</a>
+						</li>
+						<li>
+							<a href="#panel-22" data-toggle="tab">维权互助</a>
+						</li>
+						<li>
+							<a href="#panel-23" data-toggle="tab">职工天地</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-21">
+							<p>
+								第一部分内容.
+							</p>
+						</div>
+						<div class="tab-pane" id="panel-22">
+							<p>
+								第二部分内容.
+							</p>
+						</div>
+						<div class="tab-pane" id="panel-23">
+							<p>
+								第三部分内容.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+        </div>
+    </div>
 </div>
+
 
 <div class="jumbotron text-center" style="margin-bottom:0">
     <p>底部内容</p>
