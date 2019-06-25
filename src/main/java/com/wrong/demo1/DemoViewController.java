@@ -7,16 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/demoView")
+@RequestMapping("/mock")
 public class DemoViewController {
 
-    @RequestMapping("/pic")
+    @RequestMapping("/index")
     public String index() {
-        return "test_pic";
+        return "mock_index";
     }
 
-    @RequestMapping("/prototype")
-    public String one() {
-        return "prototype";
+    @RequestMapping("/department ")
+    public String department() {
+        return "mock_department ";
     }
+
+
 }
