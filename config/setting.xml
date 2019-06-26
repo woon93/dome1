@@ -250,6 +250,18 @@ under the License.
       </properties>
     </profile>
     -->
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <!-- 配置 Sonar Host地址，默认：http://localhost:9000 -->
+        <sonar.host.url>
+          http://localhost:9000
+        </sonar.host.url>
+      </properties>
+    </profile>
   </profiles>
 
   <!-- activeProfiles
