@@ -18,10 +18,10 @@ public class novelCrawler {
         String localUrl = "E:\\小说\\";
 
         // 小说名
-        String noverlName = "柳心眉慕容逸飞";
+        String noverlName = "黑暗的苏醒";
 
         // 章节目录URL
-        String chapterUrlList = "https://www.biqugeso.com/book/13622/";
+        String chapterUrlList = "https://www.biqugeso.com/book/58803/";
 
         // 要下载的章节目录
         int chapterStart = 1;
@@ -32,6 +32,9 @@ public class novelCrawler {
 
         // 文本所在HTML元素ID
         String contextId = "htmlContent";
+
+        // 章节需要翻页阅读的时候,翻页按钮的ID
+        String linkNext = "linkNext";
         /***********************************************/
 
         // 开始爬取
@@ -42,7 +45,7 @@ public class novelCrawler {
         // 小说标题
         content.append(noverlName + "\n");
         // 节选章节（subList方法左开右闭）
-        List<Element> subChapters= chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),
+        List<Element> subChapters = chapters.subList((chapterStart<=0 ? 0 : chapterStart - 1),
                 (chapterEnd < chapterStart ? chapterStart : chapterEnd));
 
         for (Element chapter : subChapters) {
@@ -50,18 +53,29 @@ public class novelCrawler {
             content.append( "\n\n\n" + chapter.text() + "\n");
             // 暂停进程（毫秒）,防止读取太快
             Thread.sleep(30);
+            StringBuffer txtBuf = new StringBuffer();
             String txt = "";
             // String txtTrimNbsp = "";
             try{
                 Document section = Jsoup.connect(chapterUrlList + chapter.attr("href")).get();
                 Elements element = section.select("div#" + contextId);
+                txtBuf.append(element.text());
 
-                // 替换掉网页原文里的【&nbsp;】
-                // txtTrimNbsp = element.text().replace(Jsoup.parse("&nbsp;").text(), "");
+                /* 读取本章节的翻页内容 */
+                String nextUrl = section.select("a#" + linkNext).attr("href");
+                Document sectionNext = Jsoup.connect(nextUrl).get();
+                Elements elementNext = sectionNext.select("div#" + contextId);
+                txtBuf.append(elementNext.text());
 
-                txt = element.text();
+                /** 替代方法
+                 *
+                 * // 替换掉网页原文里的【&nbsp;】
+                 * // txtTrimNbsp = element.text().replace(Jsoup.parse("&nbsp;").text(), "");
+                 *
+                 */
+
                 // 除去jsoup解析【&nbsp;】得到的ASCII值是160的空格
-                txt = txt.replace("\u00A0\u00A0\u00A0\u00A0","\n    ");
+                txt = txtBuf.toString().replace("\u00A0\u00A0\u00A0\u00A0","\n    ");
 
             } catch (SocketTimeoutException e){
                 System.err.println(chapter.text() + "读入失败！！！   " + e.getMessage());
@@ -82,8 +96,14 @@ public class novelCrawler {
 
         //2：准备输出流
         Writer out = new FileWriter(file);
-        out.write(content.toString());
-        out.close();
+        try {
+            out.write(content.toString());
+        } catch (IOException e){
+            System.err.println("往TXT写入失败！！！   ");
+        } finally {
+            out.close();
+        }
+
 
     }
 

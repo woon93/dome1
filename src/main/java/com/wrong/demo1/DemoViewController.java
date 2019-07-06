@@ -1,21 +1,21 @@
 package com.wrong.demo1;
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @Controller
 @RequestMapping("/mock")
 public class DemoViewController {
 
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index", method = GET)
     public String index() {
         return "mock_index";
     }
 
-    @RequestMapping("/department ")
+    @RequestMapping(value = "/department", method = GET)
     public String department() {
         return "mock_department ";
     }
