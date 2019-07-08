@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wrong.demo1.dao.urzInfoPOMapper" >
+  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.urzInfoPO" >
+    <id column="urzID" property="urzid" jdbcType="CHAR" />
+    <result column="permissions" property="permissions" jdbcType="INTEGER" />
+    <result column="accout" property="accout" jdbcType="VARCHAR" />
+    <result column="pazword" property="pazword" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="CHAR" />
+    <result column="position" property="position" jdbcType="CHAR" />
+    <result column="party" property="party" jdbcType="CHAR" />
+    <result column="hometown" property="hometown" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="portraitURL" property="portraiturl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    urzID, permissions, accout, pazword, sex, age, department, position, party, hometown, 
+    mobile, email, address, signature, portraitURL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.urzInfoPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from urzinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from urzinfo
+    where urzID = #{urzid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from urzinfo
+    where urzID = #{urzid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.urzInfoPOExample" >
+    delete from urzinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+    insert into urzinfo (urzID, permissions, accout, 
+      pazword, sex, age, department, 
+      position, party, hometown, 
+      mobile, email, address, 
+      signature, portraitURL)
+    values (#{urzid,jdbcType=CHAR}, #{permissions,jdbcType=INTEGER}, #{accout,jdbcType=VARCHAR}, 
+      #{pazword,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{department,jdbcType=CHAR}, 
+      #{position,jdbcType=CHAR}, #{party,jdbcType=CHAR}, #{hometown,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{portraiturl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+    insert into urzinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urzid != null" >
+        urzID,
+      </if>
+      <if test="permissions != null" >
+        permissions,
+      </if>
+      <if test="accout != null" >
+        accout,
+      </if>
+      <if test="pazword != null" >
+        pazword,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="party != null" >
+        party,
+      </if>
+      <if test="hometown != null" >
+        hometown,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="portraiturl != null" >
+        portraitURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urzid != null" >
+        #{urzid,jdbcType=CHAR},
+      </if>
+      <if test="permissions != null" >
+        #{permissions,jdbcType=INTEGER},
+      </if>
+      <if test="accout != null" >
+        #{accout,jdbcType=VARCHAR},
+      </if>
+      <if test="pazword != null" >
+        #{pazword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=CHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=CHAR},
+      </if>
+      <if test="party != null" >
+        #{party,jdbcType=CHAR},
+      </if>
+      <if test="hometown != null" >
+        #{hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="portraiturl != null" >
+        #{portraiturl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wrong.demo1.PO.urzInfoPOExample" resultType="java.lang.Integer" >
+    select count(*) from urzinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update urzinfo
+    <set >
+      <if test="record.urzid != null" >
+        urzID = #{record.urzid,jdbcType=CHAR},
+      </if>
+      <if test="record.permissions != null" >
+        permissions = #{record.permissions,jdbcType=INTEGER},
+      </if>
+      <if test="record.accout != null" >
+        accout = #{record.accout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pazword != null" >
+        pazword = #{record.pazword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=CHAR},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=CHAR},
+      </if>
+      <if test="record.party != null" >
+        party = #{record.party,jdbcType=CHAR},
+      </if>
+      <if test="record.hometown != null" >
+        hometown = #{record.hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signature != null" >
+        signature = #{record.signature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.portraiturl != null" >
+        portraitURL = #{record.portraiturl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update urzinfo
+    set urzID = #{record.urzid,jdbcType=CHAR},
+      permissions = #{record.permissions,jdbcType=INTEGER},
+      accout = #{record.accout,jdbcType=VARCHAR},
+      pazword = #{record.pazword,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      department = #{record.department,jdbcType=CHAR},
+      position = #{record.position,jdbcType=CHAR},
+      party = #{record.party,jdbcType=CHAR},
+      hometown = #{record.hometown,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      signature = #{record.signature,jdbcType=VARCHAR},
+      portraitURL = #{record.portraiturl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+    update urzinfo
+    <set >
+      <if test="permissions != null" >
+        permissions = #{permissions,jdbcType=INTEGER},
+      </if>
+      <if test="accout != null" >
+        accout = #{accout,jdbcType=VARCHAR},
+      </if>
+      <if test="pazword != null" >
+        pazword = #{pazword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=CHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=CHAR},
+      </if>
+      <if test="party != null" >
+        party = #{party,jdbcType=CHAR},
+      </if>
+      <if test="hometown != null" >
+        hometown = #{hometown,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="portraiturl != null" >
+        portraitURL = #{portraiturl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where urzID = #{urzid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+    update urzinfo
+    set permissions = #{permissions,jdbcType=INTEGER},
+      accout = #{accout,jdbcType=VARCHAR},
+      pazword = #{pazword,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      department = #{department,jdbcType=CHAR},
+      position = #{position,jdbcType=CHAR},
+      party = #{party,jdbcType=CHAR},
+      hometown = #{hometown,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      portraitURL = #{portraiturl,jdbcType=VARCHAR}
+    where urzID = #{urzid,jdbcType=CHAR}
+  </update>
+</mapper>

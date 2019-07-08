@@ -6,9 +6,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class novelCrawler {
@@ -55,7 +57,9 @@ public class novelCrawler {
             Thread.sleep(30);
             StringBuffer txtBuf = new StringBuffer();
             String txt = "";
-            // String txtTrimNbsp = "";
+            /**
+             * // String txtTrimNbsp = "";
+             */
             try{
                 Document section = Jsoup.connect(chapterUrlList + chapter.attr("href")).get();
                 Elements element = section.select("div#" + contextId);

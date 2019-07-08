@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wrong.demo1.dao.sysInfoPOMapper" >
+  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.sysInfoPO" >
+    <id column="normID" property="normid" jdbcType="CHAR" />
+    <result column="clazID" property="clazid" jdbcType="CHAR" />
+    <result column="claz_comment" property="clazComment" jdbcType="VARCHAR" />
+    <result column="norm1" property="norm1" jdbcType="CHAR" />
+    <result column="comment1" property="comment1" jdbcType="VARCHAR" />
+    <result column="norm2" property="norm2" jdbcType="CHAR" />
+    <result column="comment2" property="comment2" jdbcType="VARCHAR" />
+    <result column="norm3" property="norm3" jdbcType="CHAR" />
+    <result column="comment3" property="comment3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    normID, clazID, claz_comment, norm1, comment1, norm2, comment2, norm3, comment3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.sysInfoPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sysinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sysinfo
+    where normID = #{normid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sysinfo
+    where normID = #{normid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.sysInfoPOExample" >
+    delete from sysinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+    insert into sysinfo (normID, clazID, claz_comment, 
+      norm1, comment1, norm2, comment2, 
+      norm3, comment3)
+    values (#{normid,jdbcType=CHAR}, #{clazid,jdbcType=CHAR}, #{clazComment,jdbcType=VARCHAR}, 
+      #{norm1,jdbcType=CHAR}, #{comment1,jdbcType=VARCHAR}, #{norm2,jdbcType=CHAR}, #{comment2,jdbcType=VARCHAR}, 
+      #{norm3,jdbcType=CHAR}, #{comment3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+    insert into sysinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="normid != null" >
+        normID,
+      </if>
+      <if test="clazid != null" >
+        clazID,
+      </if>
+      <if test="clazComment != null" >
+        claz_comment,
+      </if>
+      <if test="norm1 != null" >
+        norm1,
+      </if>
+      <if test="comment1 != null" >
+        comment1,
+      </if>
+      <if test="norm2 != null" >
+        norm2,
+      </if>
+      <if test="comment2 != null" >
+        comment2,
+      </if>
+      <if test="norm3 != null" >
+        norm3,
+      </if>
+      <if test="comment3 != null" >
+        comment3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="normid != null" >
+        #{normid,jdbcType=CHAR},
+      </if>
+      <if test="clazid != null" >
+        #{clazid,jdbcType=CHAR},
+      </if>
+      <if test="clazComment != null" >
+        #{clazComment,jdbcType=VARCHAR},
+      </if>
+      <if test="norm1 != null" >
+        #{norm1,jdbcType=CHAR},
+      </if>
+      <if test="comment1 != null" >
+        #{comment1,jdbcType=VARCHAR},
+      </if>
+      <if test="norm2 != null" >
+        #{norm2,jdbcType=CHAR},
+      </if>
+      <if test="comment2 != null" >
+        #{comment2,jdbcType=VARCHAR},
+      </if>
+      <if test="norm3 != null" >
+        #{norm3,jdbcType=CHAR},
+      </if>
+      <if test="comment3 != null" >
+        #{comment3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wrong.demo1.PO.sysInfoPOExample" resultType="java.lang.Integer" >
+    select count(*) from sysinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sysinfo
+    <set >
+      <if test="record.normid != null" >
+        normID = #{record.normid,jdbcType=CHAR},
+      </if>
+      <if test="record.clazid != null" >
+        clazID = #{record.clazid,jdbcType=CHAR},
+      </if>
+      <if test="record.clazComment != null" >
+        claz_comment = #{record.clazComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.norm1 != null" >
+        norm1 = #{record.norm1,jdbcType=CHAR},
+      </if>
+      <if test="record.comment1 != null" >
+        comment1 = #{record.comment1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.norm2 != null" >
+        norm2 = #{record.norm2,jdbcType=CHAR},
+      </if>
+      <if test="record.comment2 != null" >
+        comment2 = #{record.comment2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.norm3 != null" >
+        norm3 = #{record.norm3,jdbcType=CHAR},
+      </if>
+      <if test="record.comment3 != null" >
+        comment3 = #{record.comment3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sysinfo
+    set normID = #{record.normid,jdbcType=CHAR},
+      clazID = #{record.clazid,jdbcType=CHAR},
+      claz_comment = #{record.clazComment,jdbcType=VARCHAR},
+      norm1 = #{record.norm1,jdbcType=CHAR},
+      comment1 = #{record.comment1,jdbcType=VARCHAR},
+      norm2 = #{record.norm2,jdbcType=CHAR},
+      comment2 = #{record.comment2,jdbcType=VARCHAR},
+      norm3 = #{record.norm3,jdbcType=CHAR},
+      comment3 = #{record.comment3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+    update sysinfo
+    <set >
+      <if test="clazid != null" >
+        clazID = #{clazid,jdbcType=CHAR},
+      </if>
+      <if test="clazComment != null" >
+        claz_comment = #{clazComment,jdbcType=VARCHAR},
+      </if>
+      <if test="norm1 != null" >
+        norm1 = #{norm1,jdbcType=CHAR},
+      </if>
+      <if test="comment1 != null" >
+        comment1 = #{comment1,jdbcType=VARCHAR},
+      </if>
+      <if test="norm2 != null" >
+        norm2 = #{norm2,jdbcType=CHAR},
+      </if>
+      <if test="comment2 != null" >
+        comment2 = #{comment2,jdbcType=VARCHAR},
+      </if>
+      <if test="norm3 != null" >
+        norm3 = #{norm3,jdbcType=CHAR},
+      </if>
+      <if test="comment3 != null" >
+        comment3 = #{comment3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where normID = #{normid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+    update sysinfo
+    set clazID = #{clazid,jdbcType=CHAR},
+      claz_comment = #{clazComment,jdbcType=VARCHAR},
+      norm1 = #{norm1,jdbcType=CHAR},
+      comment1 = #{comment1,jdbcType=VARCHAR},
+      norm2 = #{norm2,jdbcType=CHAR},
+      comment2 = #{comment2,jdbcType=VARCHAR},
+      norm3 = #{norm3,jdbcType=CHAR},
+      comment3 = #{comment3,jdbcType=VARCHAR}
+    where normID = #{normid,jdbcType=CHAR}
+  </update>
+</mapper>

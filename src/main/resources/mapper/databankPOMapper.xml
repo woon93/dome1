@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wrong.demo1.dao.databankPOMapper" >
+  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.databankPO" >
+    <id column="resourceURL" property="resourceurl" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="CHAR" />
+    <result column="limit" property="limit" jdbcType="INTEGER" />
+    <result column="create_urzID" property="createUrzid" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_urzID" property="updateUrzid" jdbcType="CHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delFlag" property="delflag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wrong.demo1.PO.databankPO" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    resourceURL, category, limit, create_urzID, create_time, update_urzID, update_time, 
+    delFlag
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.wrong.demo1.PO.databankPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from databank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.databankPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from databank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from databank
+    where resourceURL = #{resourceurl,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from databank
+    where resourceURL = #{resourceurl,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.databankPOExample" >
+    delete from databank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wrong.demo1.PO.databankPO" >
+    insert into databank (resourceURL, category, limit, 
+      create_urzID, create_time, update_urzID, 
+      update_time, delFlag, detail
+      )
+    values (#{resourceurl,jdbcType=VARCHAR}, #{category,jdbcType=CHAR}, #{limit,jdbcType=INTEGER}, 
+      #{createUrzid,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUrzid,jdbcType=CHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR}, #{detail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.databankPO" >
+    insert into databank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceurl != null" >
+        resourceURL,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="limit != null" >
+        limit,
+      </if>
+      <if test="createUrzid != null" >
+        create_urzID,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUrzid != null" >
+        update_urzID,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delflag != null" >
+        delFlag,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceurl != null" >
+        #{resourceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=CHAR},
+      </if>
+      <if test="limit != null" >
+        #{limit,jdbcType=INTEGER},
+      </if>
+      <if test="createUrzid != null" >
+        #{createUrzid,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUrzid != null" >
+        #{updateUrzid,jdbcType=CHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wrong.demo1.PO.databankPOExample" resultType="java.lang.Integer" >
+    select count(*) from databank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update databank
+    <set >
+      <if test="record.resourceurl != null" >
+        resourceURL = #{record.resourceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=CHAR},
+      </if>
+      <if test="record.limit != null" >
+        limit = #{record.limit,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUrzid != null" >
+        create_urzID = #{record.createUrzid,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUrzid != null" >
+        update_urzID = #{record.updateUrzid,jdbcType=CHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delflag != null" >
+        delFlag = #{record.delflag,jdbcType=CHAR},
+      </if>
+      <if test="record.detail != null" >
+        detail = #{record.detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update databank
+    set resourceURL = #{record.resourceurl,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=CHAR},
+      limit = #{record.limit,jdbcType=INTEGER},
+      create_urzID = #{record.createUrzid,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_urzID = #{record.updateUrzid,jdbcType=CHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      delFlag = #{record.delflag,jdbcType=CHAR},
+      detail = #{record.detail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update databank
+    set resourceURL = #{record.resourceurl,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=CHAR},
+      limit = #{record.limit,jdbcType=INTEGER},
+      create_urzID = #{record.createUrzid,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_urzID = #{record.updateUrzid,jdbcType=CHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      delFlag = #{record.delflag,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.databankPO" >
+    update databank
+    <set >
+      <if test="category != null" >
+        category = #{category,jdbcType=CHAR},
+      </if>
+      <if test="limit != null" >
+        limit = #{limit,jdbcType=INTEGER},
+      </if>
+      <if test="createUrzid != null" >
+        create_urzID = #{createUrzid,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUrzid != null" >
+        update_urzID = #{updateUrzid,jdbcType=CHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delflag != null" >
+        delFlag = #{delflag,jdbcType=CHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where resourceURL = #{resourceurl,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wrong.demo1.PO.databankPO" >
+    update databank
+    set category = #{category,jdbcType=CHAR},
+      limit = #{limit,jdbcType=INTEGER},
+      create_urzID = #{createUrzid,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_urzID = #{updateUrzid,jdbcType=CHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=CHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where resourceURL = #{resourceurl,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.databankPO" >
+    update databank
+    set category = #{category,jdbcType=CHAR},
+      limit = #{limit,jdbcType=INTEGER},
+      create_urzID = #{createUrzid,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_urzID = #{updateUrzid,jdbcType=CHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delFlag = #{delflag,jdbcType=CHAR}
+    where resourceURL = #{resourceurl,jdbcType=VARCHAR}
+  </update>
+</mapper>
