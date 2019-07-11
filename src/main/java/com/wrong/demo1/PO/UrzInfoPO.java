@@ -1,6 +1,6 @@
 package com.wrong.demo1.PO;
 
-public class urzInfoPO {
+public class UrzInfoPO {
     private String urzid;
 
     private Integer permissions;

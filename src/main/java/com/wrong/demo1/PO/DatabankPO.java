@@ -2,7 +2,7 @@ package com.wrong.demo1.PO;
 
 import java.util.Date;
 
-public class databankPO {
+public class DatabankPO {
     private String resourceurl;
 
     private String category;

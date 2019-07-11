@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wrong.demo1.dao.databankPOMapper" >
-  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.databankPO" >
+<mapper namespace="com.wrong.demo1.dao.DatabankPOMapper" >
+  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.DatabankPO" >
     <id column="resourceURL" property="resourceurl" jdbcType="VARCHAR" />
     <result column="category" property="category" jdbcType="CHAR" />
     <result column="limit" property="limit" jdbcType="INTEGER" />
@@ -11,7 +11,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="delFlag" property="delflag" jdbcType="CHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.wrong.demo1.PO.databankPO" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.wrong.demo1.PO.DatabankPO" extends="BaseResultMap" >
     <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -79,7 +79,7 @@
   <sql id="Blob_Column_List" >
     detail
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.wrong.demo1.PO.databankPOExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.wrong.demo1.PO.DatabankPOExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,7 +95,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.databankPOExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.DatabankPOExample" >
     select
     <if test="distinct" >
       distinct
@@ -121,13 +121,13 @@
     delete from databank
     where resourceURL = #{resourceurl,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.databankPOExample" >
+  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.DatabankPOExample" >
     delete from databank
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wrong.demo1.PO.databankPO" >
+  <insert id="insert" parameterType="com.wrong.demo1.PO.DatabankPO" >
     insert into databank (resourceURL, category, limit, 
       create_urzID, create_time, update_urzID, 
       update_time, delFlag, detail
@@ -137,7 +137,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{delflag,jdbcType=CHAR}, #{detail,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.databankPO" >
+  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.DatabankPO" >
     insert into databank
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="resourceurl != null" >
@@ -198,7 +198,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wrong.demo1.PO.databankPOExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.wrong.demo1.PO.DatabankPOExample" resultType="java.lang.Integer" >
     select count(*) from databank
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -268,7 +268,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.databankPO" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.DatabankPO" >
     update databank
     <set >
       <if test="category != null" >
@@ -298,7 +298,7 @@
     </set>
     where resourceURL = #{resourceurl,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wrong.demo1.PO.databankPO" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wrong.demo1.PO.DatabankPO" >
     update databank
     set category = #{category,jdbcType=CHAR},
       limit = #{limit,jdbcType=INTEGER},
@@ -310,7 +310,7 @@
       detail = #{detail,jdbcType=LONGVARCHAR}
     where resourceURL = #{resourceurl,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.databankPO" >
+  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.DatabankPO" >
     update databank
     set category = #{category,jdbcType=CHAR},
       limit = #{limit,jdbcType=INTEGER},

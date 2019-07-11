@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wrong.demo1.dao.sysInfoPOMapper" >
-  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.sysInfoPO" >
+<mapper namespace="com.wrong.demo1.dao.SysInfoPOMapper" >
+  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.SysInfoPO" >
     <id column="normID" property="normid" jdbcType="CHAR" />
     <result column="clazID" property="clazid" jdbcType="CHAR" />
     <result column="claz_comment" property="clazComment" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List" >
     normID, clazID, claz_comment, norm1, comment1, norm2, comment2, norm3, comment3
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.sysInfoPOExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.SysInfoPOExample" >
     select
     <if test="distinct" >
       distinct
@@ -97,13 +97,13 @@
     delete from sysinfo
     where normID = #{normid,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.sysInfoPOExample" >
+  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.SysInfoPOExample" >
     delete from sysinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+  <insert id="insert" parameterType="com.wrong.demo1.PO.SysInfoPO" >
     insert into sysinfo (normID, clazID, claz_comment, 
       norm1, comment1, norm2, comment2, 
       norm3, comment3)
@@ -111,7 +111,7 @@
       #{norm1,jdbcType=CHAR}, #{comment1,jdbcType=VARCHAR}, #{norm2,jdbcType=CHAR}, #{comment2,jdbcType=VARCHAR}, 
       #{norm3,jdbcType=CHAR}, #{comment3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.SysInfoPO" >
     insert into sysinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="normid != null" >
@@ -172,7 +172,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wrong.demo1.PO.sysInfoPOExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.wrong.demo1.PO.SysInfoPOExample" resultType="java.lang.Integer" >
     select count(*) from sysinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -228,7 +228,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.SysInfoPO" >
     update sysinfo
     <set >
       <if test="clazid != null" >
@@ -258,7 +258,7 @@
     </set>
     where normID = #{normid,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.sysInfoPO" >
+  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.SysInfoPO" >
     update sysinfo
     set clazID = #{clazid,jdbcType=CHAR},
       claz_comment = #{clazComment,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wrong.demo1.dao.urzInfoPOMapper" >
-  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.urzInfoPO" >
+<mapper namespace="com.wrong.demo1.dao.UrzInfoPOMapper" >
+  <resultMap id="BaseResultMap" type="com.wrong.demo1.PO.UrzInfoPO" >
     <id column="urzID" property="urzid" jdbcType="CHAR" />
     <result column="permissions" property="permissions" jdbcType="INTEGER" />
     <result column="accout" property="accout" jdbcType="VARCHAR" />
@@ -80,7 +80,7 @@
     urzID, permissions, accout, pazword, sex, age, department, position, party, hometown, 
     mobile, email, address, signature, portraitURL
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.urzInfoPOExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wrong.demo1.PO.UrzInfoPOExample" >
     select
     <if test="distinct" >
       distinct
@@ -104,13 +104,13 @@
     delete from urzinfo
     where urzID = #{urzid,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.urzInfoPOExample" >
+  <delete id="deleteByExample" parameterType="com.wrong.demo1.PO.UrzInfoPOExample" >
     delete from urzinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+  <insert id="insert" parameterType="com.wrong.demo1.PO.UrzInfoPO" >
     insert into urzinfo (urzID, permissions, accout, 
       pazword, sex, age, department, 
       position, party, hometown, 
@@ -122,7 +122,7 @@
       #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{signature,jdbcType=VARCHAR}, #{portraiturl,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+  <insert id="insertSelective" parameterType="com.wrong.demo1.PO.UrzInfoPO" >
     insert into urzinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="urzid != null" >
@@ -219,7 +219,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wrong.demo1.PO.urzInfoPOExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.wrong.demo1.PO.UrzInfoPOExample" resultType="java.lang.Integer" >
     select count(*) from urzinfo
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -299,7 +299,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wrong.demo1.PO.UrzInfoPO" >
     update urzinfo
     <set >
       <if test="permissions != null" >
@@ -347,7 +347,7 @@
     </set>
     where urzID = #{urzid,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.urzInfoPO" >
+  <update id="updateByPrimaryKey" parameterType="com.wrong.demo1.PO.UrzInfoPO" >
     update urzinfo
     set permissions = #{permissions,jdbcType=INTEGER},
       accout = #{accout,jdbcType=VARCHAR},

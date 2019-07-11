@@ -3,14 +3,14 @@ package com.wrong.demo1.PO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class articlePOExample {
+public class ArticlePOExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public articlePOExample() {
+    public ArticlePOExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

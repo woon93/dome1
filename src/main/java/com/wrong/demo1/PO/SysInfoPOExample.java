@@ -3,14 +3,14 @@ package com.wrong.demo1.PO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class sysInfoPOExample {
+public class SysInfoPOExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public sysInfoPOExample() {
+    public SysInfoPOExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

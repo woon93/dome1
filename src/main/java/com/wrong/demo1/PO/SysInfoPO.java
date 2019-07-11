@@ -1,6 +1,6 @@
 package com.wrong.demo1.PO;
 
-public class sysInfoPO {
+public class SysInfoPO {
     private String normid;
 
     private String clazid;

@@ -1,6 +1,6 @@
 package com.wrong.demo1.PO;
 
-public class articlePO {
+public class ArticlePO {
     private String articleurl;
 
     private String title;

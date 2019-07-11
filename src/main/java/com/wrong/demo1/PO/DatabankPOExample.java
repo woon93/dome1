@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class databankPOExample {
+public class DatabankPOExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public databankPOExample() {
+    public DatabankPOExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
