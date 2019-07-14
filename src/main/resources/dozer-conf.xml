@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://dozer.sourceforge.net"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <mapping>
+        <!--对应的实体和要转换成的VO-->
+        <class-a>com.vtech.quotation.pojo.Users</class-a>
+        <class-b>com.vtech.quotation.vo.UsersVO</class-b>
+        <!--对应要转换的属性名.<a>和<class-a>对应，其它同理-->
+        <field>
+            <a>userId</a>
+            <b>Id</b>
+        </field>
+    </mapping>
+</mappings>
